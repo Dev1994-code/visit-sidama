@@ -14,8 +14,10 @@ const AppHeader = () => {
           <Menu.Item key="4">Destination</Menu.Item>
           <Menu.Item key="5">Contact Us</Menu.Item>
         </Menu>
-        <Button>Sign up</Button>
-        <Button>Log in</Button>
+        <div>
+          <Button className="mr-3">Sign up</Button>
+          <Button>Log in</Button>
+        </div>
       </div>
     </div>
   );
