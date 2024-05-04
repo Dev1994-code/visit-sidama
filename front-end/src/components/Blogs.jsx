@@ -22,7 +22,7 @@ const items = [
 ];
 const Blogs = () => {
   return (
-    <div id="hero" className="heroBlock bg-green-300 mb-5">
+    <div id="hero" className="heroBlock bg-lime-400 mb-5">
       <Carousel>
         {items.map((item) => {
           return (

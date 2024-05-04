@@ -24,9 +24,8 @@
 // };
 // export default AppHeader;
 
-import { useState } from "react";
-
-import { Anchor, Drawer, Button } from "antd";
+import { Anchor, Button, Flex } from "antd";
+import Btn from "./Btn";
 
 const { Link } = Anchor;
 
@@ -34,10 +33,10 @@ const AppHeader = () => {
   return (
     <div className="container-fluid">
       <div className="header">
-        <div className="logo">
+        <div className="logo -ml-3.5">
           <a href="http://google.com">TRVL</a>
         </div>
-        <div>
+        <div className="mobileHidden">
           <Anchor>
             <Link href="#hero" title="Home" className="text-lg" />
             <Link href="#about" title="About" className="text-lg" />
@@ -48,9 +47,10 @@ const AppHeader = () => {
             <Link href="#contact" title="Contact" className="text-lg" />
           </Anchor>
         </div>
-        <div className="flex gap-7">
-          <button className="text-lg">login</button>
-          <button className="text-lg">Sign up</button>
+        <div className="-mr-3.5 mobileHidden">
+          <Anchor>
+            <Btn />
+          </Anchor>
         </div>
       </div>
     </div>
@@ -58,3 +58,10 @@ const AppHeader = () => {
 };
 
 export default AppHeader;
+
+{
+  /* <div className="flex gap-7">
+          <button className="text-lg">login</button>
+          <button className="text-lg">Sign up</button>
+        </div> */
+}
