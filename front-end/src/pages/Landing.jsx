@@ -5,7 +5,7 @@ import Blogs from "../components/Blogs";
 const Landing = () => {
   return (
     <>
-      <div className="flex items-center mt-20">
+      <div className="flex items-center mt-20 mb-7 flex-col-sm">
         <div className="mx-20">
           <h2>Travel with us!</h2>
           <p>

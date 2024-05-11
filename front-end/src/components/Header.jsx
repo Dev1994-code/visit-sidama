@@ -1,39 +1,23 @@
-// import { Menu, Button } from "antd";
-
-// const AppHeader = () => {
-//   return (
-//     <div className="container-fluid">
-//       <div className="header">
-//         <div className="logo">
-//           <div className="custom">TRVL</div>
-//         </div>
-//         <Menu mode="horizontal" defaultSelectedKeys={"1"}>
-//           <Menu.Item key="1">home</Menu.Item>
-//           <Menu.Item key="2">about</Menu.Item>
-//           <Menu.Item key="3">packages</Menu.Item>
-//           <Menu.Item key="4">Destination</Menu.Item>
-//           <Menu.Item key="5">Contact Us</Menu.Item>
-//         </Menu>
-//         <div>
-//           <Button className="mr-3">Sign up</Button>
-//           <Button>Log in</Button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-// export default AppHeader;
-
-import { Anchor, Button, Flex } from "antd";
+import { useState } from "react";
+import { Anchor, Drawer, Button } from "antd";
 import Btn from "./Btn";
 
 const { Link } = Anchor;
 
 const AppHeader = () => {
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
   return (
     <div className="container-fluid">
       <div className="header">
-        <div className="logo -ml-3.5">
+        <div className="logo">
           <a href="http://google.com">TRVL</a>
         </div>
         <div className="mobileHidden">
@@ -47,6 +31,36 @@ const AppHeader = () => {
             <Link href="#contact" title="Contact" className="text-lg" />
           </Anchor>
         </div>
+        <div className="mobileVisible">
+          <Button type="primary" onClick={showDrawer} className=" bg-lime-400">
+            <i className="fas fa-bars"></i>
+          </Button>
+          <Drawer title="TRVL" onClose={onClose} open={open}>
+            <Anchor>
+              <Link href="#hero" title="Home" className="text-lg" />
+              <Link href="#about" title="About" className="text-lg" />
+              <Link href="#feature" title="Features" className="text-lg" />
+              <Link href="#works" title="How it works" className="text-lg" />
+              <Link href="#faq" title="FAQ" className="text-lg" />
+              <Link href="#pricing" title="Pricing" className="text-lg" />
+              <Link href="#contact" title="Contact" className="text-lg" />
+            </Anchor>
+            <div className="flex flex-col my-7 gap-6">
+              <Button
+                type="primary"
+                className=" bg-lime-400 ml-4 hover:bg-white"
+              >
+                Login
+              </Button>
+              <Button
+                type="primary"
+                className="ml-4 bg-lime-400 hover:bg-white"
+              >
+                Sign up
+              </Button>
+            </div>
+          </Drawer>
+        </div>
         <div className="-mr-3.5 mobileHidden">
           <Anchor>
             <Btn />
@@ -58,10 +72,3 @@ const AppHeader = () => {
 };
 
 export default AppHeader;
-
-{
-  /* <div className="flex gap-7">
-          <button className="text-lg">login</button>
-          <button className="text-lg">Sign up</button>
-        </div> */
-}

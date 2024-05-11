@@ -466,7 +466,7 @@ responsive
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 950px) {
   .pricingBlock .ant-row > div:nth-child(2) .ant-list-item {
     transform: scale(1);
   }
@@ -477,5 +477,17 @@ responsive
 
   .mobileHidden {
     display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .flex-col-sm {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 950px) {
+  .logo {
+    margin-left: 10px;
   }
 }
