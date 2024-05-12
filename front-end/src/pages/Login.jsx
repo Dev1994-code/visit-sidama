@@ -1,78 +1,69 @@
-import { Button, Checkbox, Form, Input } from "antd";
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+import { Form, Input, Typography, Button, message, Checkbox } from "antd";
+import "../assets/custom.css";
+
 const Login = () => {
+  const checkLogin = () => {
+    message.success("Login Successful!");
+  };
+  const labelStyle = {
+    fontSize: "1.2rem", // Adjust the font size as needed
+  };
   return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      style={{
-        maxWidth: 600,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Please input your username!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
+    <div className="loginBg ">
+      <Form className="loginForm" onFinish={checkLogin}>
+        <Typography.Title className="flex justify-center items-center">
+          Login
+        </Typography.Title>
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              type: "email",
+              message: "please enter valid email",
+            },
+          ]}
+          label={<span style={labelStyle}>Email</span>}
+          name={"email"}
+          className="text-lg"
+        >
+          <Input placeholder="Enter your email" className="text-lg" />
+        </Form.Item>
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "please enter your password",
+            },
+          ]}
+          label={<span style={labelStyle}>Password</span>}
+          name={"password"}
+          className="text-lg"
+        >
+          <Input.Password
+            placeholder="Enter your password"
+            className="text-lg"
+          />
+        </Form.Item>
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Checkbox className="text-xl flex items-center">Remember me</Checkbox>
+        </Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          block
+          className="text-lg flex items-center justify-center"
+        >
           Submit
         </Button>
-      </Form.Item>
-    </Form>
+      </Form>
+    </div>
   );
 };
 export default Login;

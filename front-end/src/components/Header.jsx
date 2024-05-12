@@ -107,12 +107,14 @@ const AppHeader = () => {
                   Login
                 </Button>
               </RouterLink>
-              <Button
-                type="primary"
-                className="ml-4 bg-lime-400  text-xl flex items-center justify-center"
-              >
-                Sign up
-              </Button>
+              <RouterLink to="/signup">
+                <Button
+                  type="primary"
+                  className="ml-4 bg-lime-400  text-xl flex items-center justify-center"
+                >
+                  Sign up
+                </Button>
+              </RouterLink>
             </div>
           </Drawer>
         </div>

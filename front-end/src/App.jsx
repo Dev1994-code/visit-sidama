@@ -1,7 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Home, Admin, Login, Register } from "./pages";
+import { Home, Admin, Login } from "./pages";
 import Landing from "./pages/Landing";
 import HawassaCity from "./pages/hawassaCity";
+import Signup from "./pages/Signup";
 
 const router = createBrowserRouter([
   {
@@ -16,20 +17,20 @@ const router = createBrowserRouter([
         path: "/hawassaCity",
         element: <HawassaCity />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
     ],
   },
   {
     path: "/admin",
     element: <Admin />,
   },
+  {
+    path: "/login",
+    element: <Login />,
+  },
 
   {
-    path: "/register",
-    element: <Register />,
+    path: "/signup",
+    element: <Signup />,
   },
   {
     path: "/login",
