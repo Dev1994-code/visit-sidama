@@ -1,29 +1,32 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import {
-  Home,
-  Admin,
-  About,
-  Login,
-  Register,
-  CreatePackage,
-  DeletePackage,
-  EditPackage,
-  TourGuider,
-} from "./pages";
+import { Home, Admin, Login, Register } from "./pages";
+import Landing from "./pages/Landing";
+import HawassaCity from "./pages/hawassaCity";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    children: [
+      {
+        path: "/",
+        element: <Landing />,
+      },
+      {
+        path: "/hawassaCity",
+        element: <HawassaCity />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
   },
   {
     path: "/admin",
     element: <Admin />,
   },
-  {
-    path: "/about",
-    element: <About />,
-  },
+
   {
     path: "/register",
     element: <Register />,
@@ -31,22 +34,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/createpackage",
-    element: <CreatePackage />,
-  },
-  {
-    path: "/editpackage",
-    element: <EditPackage />,
-  },
-  {
-    path: "/deletepackage",
-    element: <DeletePackage />,
-  },
-  {
-    path: "/tourguider",
-    element: <TourGuider />,
   },
 ]);
 const App = () => {
