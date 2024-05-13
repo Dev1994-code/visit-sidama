@@ -10,9 +10,11 @@ const Btn = () => {
             Login
           </Button>
         </RouterLink>
-        <Button type="primary" className="ml-4 bg-lime-400 hover:bg-white">
-          Sign up
-        </Button>
+        <RouterLink to="/signup">
+          <Button type="primary" className="ml-4 bg-lime-400 hover:bg-white">
+            Sign up
+          </Button>
+        </RouterLink>
       </Flex>
     </Flex>
   );
