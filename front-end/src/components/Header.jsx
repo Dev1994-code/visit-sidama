@@ -23,7 +23,7 @@ const menu = (
       <RouterLink
         target="_blank"
         rel="noopener noreferrer"
-        to="https://www.aliyun.com"
+        to="/wendogenet"
         className="text-xl hover:bg-lime-400 transition-all duration-300 rounded"
       >
         Wendogenet
@@ -66,10 +66,7 @@ const AppHeader = () => {
               className="text-xl hover:text-lime-400 transition-all duration-300"
             />
             <Dropdown overlay={menu} placement="bottomRight">
-              <RouterLink
-                className="mt-1 ml-3 text-xl hover:text-lime-400 transition-all duration-300"
-                to="/about"
-              >
+              <RouterLink className="mt-1 ml-3 text-xl hover:text-lime-400 transition-all duration-300">
                 About <DownOutlined />
               </RouterLink>
             </Dropdown>

@@ -3,6 +3,7 @@ import { Home, Admin, Login } from "./pages";
 import Landing from "./pages/Landing";
 import HawassaCity from "./pages/hawassaCity";
 import Signup from "./pages/Signup";
+import Wendogenet from "./pages/Wendogenet";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/hawassaCity",
         element: <HawassaCity />,
+      },
+      {
+        path: "/wendogenet",
+        element: <Wendogenet />,
       },
     ],
   },
