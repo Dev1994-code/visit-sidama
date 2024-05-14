@@ -1,21 +1,26 @@
 import { Card, List } from "antd";
+import { Link } from "react-router-dom";
 const data = [
   {
+    id: 1,
     img: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
     title: "Europe Street beat",
     description: "some description about the travel",
   },
   {
+    id: 2,
     img: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
     title: "Europe Street beat",
     description: "some description about the travel",
   },
   {
+    id: 3,
     img: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
     title: "Europe Street beat",
     description: "some description about the travel",
   },
   {
+    id: 4,
     img: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
     title: "Europe Street beat",
     description: "some description about the travel",
@@ -39,14 +44,14 @@ const Destinations = () => {
           dataSource={data}
           renderItem={(item) => (
             <List.Item>
-              <Card hoverable cover={<img src={item.img} />}>
-                <Card.Meta title={item.title} description={item.description} />
-              </Card>
-              {/* <MyCard
-                img={item.img}
-                title={item.title}
-                description={item.description}
-              /> */}
+              <Link to={`/destination/${item.id}`}>
+                <Card hoverable cover={<img src={item.img} alt={item.title} />}>
+                  <Card.Meta
+                    title={item.title}
+                    description={item.description}
+                  />
+                </Card>
+              </Link>
             </List.Item>
           )}
         />
@@ -111,3 +116,11 @@ export default Destinations;
 // };
 
 // export default Destinations;
+
+{
+  /* <MyCard
+                img={item.img}
+                title={item.title}
+                description={item.description}
+              /> */
+}

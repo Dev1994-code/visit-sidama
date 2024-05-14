@@ -24,6 +24,17 @@
   background-position: center;
 }
 
+.yirgaBg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://cdn.pixabay.com/photo/2018/11/17/22/15/trees-3822149_1280.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .loginForm {
   background-color: rgba(255, 255green, 255, 0.33);
   box-shadow: 0px 8px 32px 0 rgba(0, 0, 255, 0.33);

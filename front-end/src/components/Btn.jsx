@@ -6,12 +6,10 @@ const Btn = () => {
     <Flex gap="small" align="flex-start" vertical>
       <Flex gap="large">
         <RouterLink to="/login">
-          <Button type="primary" className=" bg-lime-400 hover:bg-white">
-            Login
-          </Button>
+          <Button type="primary">Login</Button>
         </RouterLink>
         <RouterLink to="/signup">
-          <Button type="primary" className="ml-4 bg-lime-400 hover:bg-white">
+          <Button type="primary" className="ml-4">
             Sign up
           </Button>
         </RouterLink>

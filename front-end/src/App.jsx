@@ -1,9 +1,13 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Home, Admin, Login } from "./pages";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import HawassaCity from "./pages/hawassaCity";
 import Signup from "./pages/Signup";
 import Wendogenet from "./pages/Wendogenet";
+import Yirgalem from "./pages/Yirgalem";
+import Package1 from "./pages/Package1";
+import { ConfigProvider } from "antd";
 
 const router = createBrowserRouter([
   {
@@ -22,12 +26,17 @@ const router = createBrowserRouter([
         path: "/wendogenet",
         element: <Wendogenet />,
       },
+      {
+        path: "/yirgalem",
+        element: <Yirgalem />,
+      },
+      {
+        path: "/destination/:id",
+        element: <Package1 />,
+      },
     ],
   },
-  {
-    path: "/admin",
-    element: <Admin />,
-  },
+
   {
     path: "/login",
     element: <Login />,
@@ -43,6 +52,16 @@ const router = createBrowserRouter([
   },
 ]);
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#a3e635",
+        },
+      }}
+    >
+      <RouterProvider router={router} />
+    </ConfigProvider>
+  );
 };
 export default App;
