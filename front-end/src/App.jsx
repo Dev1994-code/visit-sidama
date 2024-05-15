@@ -6,8 +6,8 @@ import HawassaCity from "./pages/hawassaCity";
 import Signup from "./pages/Signup";
 import Wendogenet from "./pages/Wendogenet";
 import Yirgalem from "./pages/Yirgalem";
-import Package1 from "./pages/Package1";
 import { ConfigProvider } from "antd";
+import Package from "./pages/Package";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/destination/:id",
-        element: <Package1 />,
+        element: <Package />,
       },
     ],
   },

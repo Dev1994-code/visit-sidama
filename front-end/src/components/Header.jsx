@@ -42,6 +42,31 @@ const menu = (
   </Menu>
 );
 
+const eventsMenu = (
+  <Menu>
+    <Menu.Item key="0">
+      <RouterLink
+        target="_blank"
+        rel="noopener noreferrer"
+        to="/event1"
+        className="text-xl hover:bg-lime-400 transition-all duration-300 rounded"
+      >
+        Fichee Chambalala
+      </RouterLink>
+    </Menu.Item>
+    <Menu.Item key="1">
+      <RouterLink
+        target="_blank"
+        rel="noopener noreferrer"
+        to="/event2"
+        className="text-xl hover:bg-lime-400 transition-all duration-300 rounded"
+      >
+        St.Gabriel Annual Festival
+      </RouterLink>
+    </Menu.Item>
+  </Menu>
+);
+
 const AppHeader = () => {
   const [open, setOpen] = useState(false);
 
@@ -68,8 +93,11 @@ const AppHeader = () => {
             </Dropdown>
             <Link to="#feature" title="Features" className="text-xl" />
             <Link to="#works" title="How it works" className="text-xl" />
-            <Link to="#faq" title="FAQ" className="text-xl" />
-            <Link to="#pricing" title="Pricing" className="text-xl" />
+            <Dropdown overlay={eventsMenu} placement="bottomRight">
+              <RouterLink className="ant-dropdown-link text-xl hover:text-lime-400 transition-all duration-300 ml-3 mt-1">
+                Events <DownOutlined />
+              </RouterLink>
+            </Dropdown>
             <Link to="#contact" title="Contact" className="text-xl" />
           </Anchor>
         </div>
@@ -81,21 +109,24 @@ const AppHeader = () => {
             <Anchor>
               <Link to="#faq" title="FAQ" className="text-lg" />
               <Dropdown overlay={menu} placement="bottomRight">
-                <RouterLink className="ant-dropdown-link text-lg hover:text-lime-400 transition-all duration-300 ml-3">
+                <RouterLink className="ant-dropdown-link text-xl hover:text-lime-400 transition-all duration-300 ml-3 mt-1">
                   About <DownOutlined />
                 </RouterLink>
               </Dropdown>
               <Link to="#feature" title="Features" className="text-lg" />
               <Link to="#works" title="How it works" className="text-lg" />
-
-              <Link to="#pricing" title="Pricing" className="text-lg" />
+              <Dropdown overlay={eventsMenu} placement="bottomRight">
+                <RouterLink className="ant-dropdown-link text-xl hover:text-lime-400 transition-all duration-300 ml-3">
+                  Events <DownOutlined />
+                </RouterLink>
+              </Dropdown>
               <Link to="#contact" title="Contact" className="text-lg" />
             </Anchor>
             <div className="flex flex-col my-7 gap-4 ">
               <RouterLink to="/login">
                 <Button
                   type="primary"
-                  className=" bg-lime-400 ml-4 text-xl flex items-center justify-center hover:bg-red-600"
+                  className=" bg-lime-400 ml-4 text-xl flex items-center justify-centers"
                 >
                   Login
                 </Button>
