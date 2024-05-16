@@ -1,11 +1,12 @@
 import pic from "../assets/pic.jpg";
 import Destinations from "../components/Destinations";
 import Blogs from "../components/Blogs";
+import Reviews from "../components/Reviews";
 
 const Landing = () => {
   return (
     <>
-      <div className="flex items-center  flex-col-sm">
+      <div className="flex items-center flex-col-sm md:grid">
         <div className="grid grid-cols-5 gap-8">
           <div className="col-span-2 mt-40 ml-20">
             <h2 className="text-4xl font-bold mb-4">Travel with us!</h2>
@@ -25,12 +26,9 @@ const Landing = () => {
           </div>
         </div>
       </div>
-      <div>
-        <Destinations />
-      </div>
-      <div>
-        <Blogs />
-      </div>
+      <Destinations />
+      <Blogs />
+      <Reviews />
     </>
   );
 };
