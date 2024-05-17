@@ -1,7 +1,16 @@
 import { Form, Input, Typography, Button, message, Checkbox } from "antd";
 import "../assets/custom.css";
+//import axios from "axios";
+import { useNavigation } from "react-router-dom";
+//const Api_path = import.meta.env.VITE_API_PATH;
+
+// const data = await axios.post(`${Api_path}/user/register`);
+// console.log(data);
 
 const Signup = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state == "submitting";
+
   const checkSignup = () => {
     message.success("SignUp Successful!");
   };
@@ -10,7 +19,7 @@ const Signup = () => {
   };
   return (
     <div className="loginBg ">
-      <Form className="loginForm" onFinish={checkSignup}>
+      <Form method="post" className="loginForm" onFinish={checkSignup}>
         <Typography.Title className="flex justify-center items-center">
           SignUp
         </Typography.Title>
@@ -25,7 +34,33 @@ const Signup = () => {
           name={"username"}
           className="text-lg"
         >
-          <Input placeholder="Enter your email" className="text-lg" />
+          <Input placeholder="Enter Username" className="text-lg" />
+        </Form.Item>
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "please enter valid email",
+            },
+          ]}
+          label={<span style={labelStyle}>name</span>}
+          name={"name"}
+          className="text-lg"
+        >
+          <Input placeholder="Enter name" className="text-lg" />
+        </Form.Item>
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "please enter valid email",
+            },
+          ]}
+          label={<span style={labelStyle}>contactInformation</span>}
+          name={"contact"}
+          className="text-lg"
+        >
+          <Input placeholder="" className="text-lg" />
         </Form.Item>
         <Form.Item
           rules={[
@@ -72,8 +107,9 @@ const Signup = () => {
           htmlType="submit"
           block
           className="text-lg flex items-center justify-center"
+          disabled={isSubmitting}
         >
-          Submit
+          {isSubmitting ? "submitting" : "submit"}
         </Button>
       </Form>
     </div>

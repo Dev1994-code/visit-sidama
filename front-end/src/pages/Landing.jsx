@@ -6,8 +6,8 @@ import Reviews from "../components/Reviews";
 const Landing = () => {
   return (
     <>
-      <div className="flex items-center flex-col-sm md:grid">
-        <div className="grid grid-cols-5 gap-8">
+      <div className="">
+        <div className="lg:grid grid-cols-5 gap-8">
           <div className="col-span-2 mt-40 ml-20">
             <h2 className="text-4xl font-bold mb-4">Travel with us!</h2>
             <p className="text-lg text-gray-700">

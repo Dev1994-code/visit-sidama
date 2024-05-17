@@ -13,7 +13,7 @@ const Reviews = () => {
     },
     {
       id: 2,
-      name: "Jane Smith",
+      name: "antneh Smith",
       rating: 4.8,
       comment:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -34,14 +34,21 @@ const Reviews = () => {
     },
     {
       id: 5,
+      name: "estif Johnson",
+      rating: 4.2,
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      id: 6,
       name: "Yonas Johnson",
       rating: 4.2,
       comment:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
-      id: 5,
-      name: "Yonas Johnson",
+      id: 7,
+      name: "eyoel Johnson",
       rating: 4.2,
       comment:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -54,6 +61,7 @@ const Reviews = () => {
   };
   const offset = currentPage * reviewsPerPage;
   const currentReviews = reviews.slice(offset, offset + reviewsPerPage);
+
   return (
     <section className="bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
