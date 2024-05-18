@@ -48,7 +48,7 @@ const eventsMenu = (
       <RouterLink
         target="_blank"
         rel="noopener noreferrer"
-        to="/event1"
+        to="/fiche"
         className="text-xl hover:bg-lime-400 transition-all duration-300 rounded"
       >
         Fichee Chambalala
@@ -58,7 +58,7 @@ const eventsMenu = (
       <RouterLink
         target="_blank"
         rel="noopener noreferrer"
-        to="/event2"
+        to="/stgabriel"
         className="text-xl hover:bg-lime-400 transition-all duration-300 rounded"
       >
         St.Gabriel Annual Festival
@@ -91,8 +91,7 @@ const AppHeader = () => {
                 About <DownOutlined />
               </RouterLink>
             </Dropdown>
-            <Link to="#feature" title="Features" className="text-xl" />
-            <Link to="#works" title="How it works" className="text-xl" />
+            <Link to="/hotels" title="Hotels" className="text-xl" />
             <Dropdown overlay={eventsMenu} placement="bottomRight">
               <RouterLink className="ant-dropdown-link text-xl hover:text-lime-400 transition-all duration-300 ml-3 mt-1">
                 Events <DownOutlined />

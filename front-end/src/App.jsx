@@ -8,6 +8,8 @@ import Wendogenet from "./pages/Wendogenet";
 import Yirgalem from "./pages/Yirgalem";
 import { ConfigProvider } from "antd";
 import Package from "./pages/Package";
+import Fiche from "./pages/Fiche";
+import StGabriel from "./pages/StGabriel";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
         path: "/destination/:id",
         element: <Package />,
       },
+      {
+        path: "/fiche",
+        element: <Fiche />,
+      },
+      {
+        path: "/stgabriel",
+        element: <StGabriel />,
+      },
     ],
   },
 
@@ -48,11 +58,6 @@ const router = createBrowserRouter([
       console.log("hello there");
       return null;
     },
-  },
-
-  {
-    path: "/login",
-    element: <Login />,
   },
 ]);
 const App = () => {
