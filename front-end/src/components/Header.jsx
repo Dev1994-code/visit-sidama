@@ -4,6 +4,7 @@ import Btn from "./Btn";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Menu } from "antd";
 import { Link as RouterLink } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const { Link } = Anchor;
 
@@ -69,6 +70,7 @@ const eventsMenu = (
 
 const AppHeader = () => {
   const [open, setOpen] = useState(false);
+  const [cookies, setCookies] = useCookies(["access_token"]);
 
   const showDrawer = () => {
     setOpen(true);
@@ -86,13 +88,13 @@ const AppHeader = () => {
         <div className="mobileHidden">
           <Anchor>
             <Link to="#faq" title="FAQ" className="text-lg" />
-            <Dropdown overlay={menu} placement="bottomRight">
+            <Dropdown menu={menu} placement="bottomRight">
               <RouterLink className="mt-1 ml-3 text-xl hover:text-lime-400 transition-all duration-300">
-                About <DownOutlined />
+                Destinations <DownOutlined />
               </RouterLink>
             </Dropdown>
             <Link to="/hotels" title="Hotels" className="text-xl" />
-            <Dropdown overlay={eventsMenu} placement="bottomRight">
+            <Dropdown menu={eventsMenu} placement="bottomRight">
               <RouterLink className="ant-dropdown-link text-xl hover:text-lime-400 transition-all duration-300 ml-3 mt-1">
                 Events <DownOutlined />
               </RouterLink>
@@ -107,14 +109,14 @@ const AppHeader = () => {
           <Drawer title="TRVL" onClose={onClose} open={open}>
             <Anchor>
               <Link to="#faq" title="FAQ" className="text-lg" />
-              <Dropdown overlay={menu} placement="bottomRight">
+              <Dropdown menu={menu} placement="bottomRight">
                 <RouterLink className="ant-dropdown-link text-xl hover:text-lime-400 transition-all duration-300 ml-3 mt-1">
                   About <DownOutlined />
                 </RouterLink>
               </Dropdown>
               <Link to="#feature" title="Features" className="text-lg" />
               <Link to="#works" title="How it works" className="text-lg" />
-              <Dropdown overlay={eventsMenu} placement="bottomRight">
+              <Dropdown menu={eventsMenu} placement="bottomRight">
                 <RouterLink className="ant-dropdown-link text-xl hover:text-lime-400 transition-all duration-300 ml-3">
                   Events <DownOutlined />
                 </RouterLink>
@@ -122,22 +124,26 @@ const AppHeader = () => {
               <Link to="#contact" title="Contact" className="text-lg" />
             </Anchor>
             <div className="flex flex-col my-7 gap-4 ">
-              <RouterLink to="/login">
-                <Button
-                  type="primary"
-                  className=" bg-lime-400 ml-4 text-xl flex items-center justify-centers"
-                >
-                  Login
-                </Button>
-              </RouterLink>
-              <RouterLink to="/signup">
-                <Button
-                  type="primary"
-                  className="ml-4 bg-lime-400  text-xl flex items-center justify-center"
-                >
-                  Sign up
-                </Button>
-              </RouterLink>
+              {!cookies.access_token && (
+                <>
+                  <RouterLink to="/login">
+                    <Button
+                      type="primary"
+                      className=" bg-lime-400 ml-4 text-xl flex items-center justify-centers"
+                    >
+                      Login
+                    </Button>
+                  </RouterLink>
+                  <RouterLink to="/signup">
+                    <Button
+                      type="primary"
+                      className="ml-4 bg-lime-400  text-xl flex items-center justify-center"
+                    >
+                      Sign up
+                    </Button>
+                  </RouterLink>
+                </>
+              )}
             </div>
           </Drawer>
         </div>

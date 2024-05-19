@@ -1,16 +1,59 @@
 import { Form, Input, Typography, Button, message, Checkbox } from "antd";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 import "../assets/custom.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const checkLogin = () => {
-    message.success("Login Successful!");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setErrors({ ...errors, [name]: "" });
+  };
+  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [userIdCookies, setUserIdCookies] = useCookies(["userId_cookies"]);
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
+
+  // const checkLogin = () => {
+  //   message.success("Login Successful!");
+  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://localhost:3002/user/login`,
+        formData
+      );
+      console.log("response", response.data);
+      alert("user Logged In Successfully!");
+      // setFormData({ password: "", email: "" });
+      if (response.status === 200) {
+        setCookies("access_token", response.data.token);
+        setUserIdCookies("userId_cookies", response.data.user._id);
+        // console.log(response.data);
+        navigate("/");
+      }
+    } catch (ex) {
+      console.log("ex:", ex);
+
+      if (ex.response && ex.response.status === 400) {
+        setErrors(ex.response.data);
+      }
+    }
   };
   const labelStyle = {
     fontSize: "1.2rem", // Adjust the font size as needed
   };
+
   return (
     <div className="loginBg ">
-      <Form className="loginForm" onFinish={checkLogin}>
+      <form className="loginForm" onSubmit={handleSubmit}>
         <Typography.Title className="flex justify-center items-center">
           Login
         </Typography.Title>
@@ -26,7 +69,13 @@ const Login = () => {
           name={"email"}
           className="text-lg"
         >
-          <Input placeholder="Enter your email" className="text-lg" />
+          <Input
+            name="email"
+            placeholder="Enter your Email"
+            className="text-lg"
+            value={formData.email}
+            onChange={handleChange}
+          />
         </Form.Item>
         <Form.Item
           rules={[
@@ -40,8 +89,11 @@ const Login = () => {
           className="text-lg"
         >
           <Input.Password
+            name="password"
             placeholder="Enter your password"
             className="text-lg"
+            value={formData.password}
+            onChange={handleChange}
           />
         </Form.Item>
         <Form.Item
@@ -62,7 +114,7 @@ const Login = () => {
         >
           Submit
         </Button>
-      </Form>
+      </form>
     </div>
   );
 };

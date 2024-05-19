@@ -50,14 +50,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
     action: () => {
       console.log("hello there");
       return null;
     },
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 ]);
 const App = () => {

@@ -1,4 +1,4 @@
-import pic from "../assets/pic.jpg";
+//import pic from "../assets/pic.jpg";
 import Destinations from "../components/Destinations";
 import Blogs from "../components/Blogs";
 import Reviews from "../components/Reviews";
@@ -19,7 +19,7 @@ const Landing = () => {
           </div>
           <div className="col-span-3 mt-14 ml-6">
             <img
-              src={pic}
+              src="https://visitsidama.travel/wp-content/uploads/2021/06/Aregash-Lodge.jpg"
               alt="hero"
               className="rounded-md shadow-md w-full h-4/5 mt-7"
             />

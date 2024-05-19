@@ -12,12 +12,11 @@ exports.detail = asyncMiddleware(async (req, res) => {
 });
 
 exports.register = asyncMiddleware(async (req, res) => {
-  const { username, name, password, email, contactInformation } = req.body;
+  const { username, password, email, contactInformation } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
   let user = new User({
     username,
-    name,
     password: hashedPassword,
     email,
     contactInformation,
