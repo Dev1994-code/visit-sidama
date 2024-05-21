@@ -31,6 +31,7 @@ const packageSchema = new Schema({
   rating: {
     type: Number,
   },
+  itinerary: [{ day: { type: String }, info: { type: String } }],
 });
 
 const Package = mongoose.model("Package", packageSchema);

@@ -6,9 +6,10 @@ const TourGuide = require("../models/TourGuide");
 
 // Create a new booking
 exports.createBooking = asyncMiddleware(async (req, res) => {
-  const { user, package, tourGuide } = req.body;
+  const { userId } = req.params;
+  const { package, tourGuide, date, peopleNumber, method } = req.body;
 
-  const users = await User.findById(user);
+  const users = await User.findById(userId);
   if (!users) {
     return res.status(404).json({ error: "User not found" });
   }
@@ -19,14 +20,17 @@ exports.createBooking = asyncMiddleware(async (req, res) => {
   }
 
   const tourGuides = await TourGuide.findById(tourGuide);
-  if (!packages) {
+  if (!tourGuides) {
     return res.status(404).json({ error: "TourGuide not found" });
   }
 
   const newBooking = new Booking({
-    user,
+    user: userId,
     package,
     tourGuide,
+    date,
+    peopleNumber,
+    method,
   });
 
   await newBooking.save();
@@ -36,6 +40,20 @@ exports.createBooking = asyncMiddleware(async (req, res) => {
 // Get all bookings
 exports.getBookings = asyncMiddleware(async (req, res) => {
   const bookings = await Booking.find().populate("user").populate("package");
+  res.status(200).json(bookings);
+});
+
+// Get all bookings by TourGuide
+exports.getBookingByGuide = asyncMiddleware(async (req, res) => {
+  const { id } = req.params;
+
+  const guide = await TourGuide.findById(id);
+
+  if (!guide) return res.status(404).send("TourGuide NOt Found");
+
+  const bookings = await Booking.find({ tourGuide: id })
+    .populate("user")
+    .populate("package");
   res.status(200).json(bookings);
 });
 

@@ -9,10 +9,10 @@ exports.register = asyncMiddleware(async (req, res) => {
   const { name, email, password, location, website, phone, description } =
     req.body;
 
-  // Check if the role is valid
-  // if (!["admin", "tourguide"].includes(role)) {
-  //   return res.status(400).json({ error: "Invalid role" });
-  // }
+  const guide = await TourGuide.findOne({ email: email });
+
+  if (guide)
+    return res.status(400).send("TourGuide with this email already exist.");
 
   // Hash password
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -46,7 +46,7 @@ exports.login = asyncMiddleware(async (req, res) => {
   const { email, password } = req.body;
 
   // Find user by email
-  let user = await TourGuide.findOne({ email });
+  let user = await TourGuide.findOne({ email: email });
 
   if (!user) {
     return res.status(401).json({ error: "Invalid email or password" });
@@ -72,7 +72,7 @@ exports.login = asyncMiddleware(async (req, res) => {
   });
 
   // Send user details and token
-  res.status(200).json({ token, name: user.name });
+  res.status(200).json({ token, name: user.name, id: user._id });
 });
 
 exports.guideActive = asyncMiddleware(async (req, res) => {

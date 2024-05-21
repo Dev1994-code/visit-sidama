@@ -11,7 +11,8 @@ exports.detail = asyncMiddleware(async (req, res) => {
 });
 
 exports.create = asyncMiddleware(async (req, res) => {
-  const { name, description, price, location, activities, admin } = req.body;
+  const { name, description, price, location, activities, admin, itinerary } =
+    req.body;
 
   const Admins = await Admin.findById(admin);
   if (!Admins) {
@@ -41,6 +42,7 @@ exports.create = asyncMiddleware(async (req, res) => {
     activities,
     image: { public_id: result.public_id, url: result.secure_url },
     admin,
+    itinerary,
   });
   await package.save();
   res.status(201).json(package);
@@ -59,7 +61,8 @@ exports.getPackageById = asyncMiddleware(async (req, res) => {
 // Update a package
 exports.updatePackage = asyncMiddleware(async (req, res) => {
   const { id } = req.params;
-  const { name, description, price, location, activities, admin } = req.body;
+  const { name, description, price, location, activities, admin, itinerary } =
+    req.body;
 
   const Admins = await Admin.findById(admin);
   if (!Admins) {
@@ -75,29 +78,52 @@ exports.updatePackage = asyncMiddleware(async (req, res) => {
     const newPath = path + "." + ext;
     fs.renameSync(path, newPath);
     image = newPath;
+    const result = await cloudinary.uploader.upload(image, {
+      folder: "packageImage",
+    });
+
+    image = { public_id: result.public_id, url: result.secure_url };
   }
 
-  const result = await cloudinary.uploader.upload(image, {
-    folder: "packageImage",
-  });
+  const updateData = {
+    name,
+    description,
+    price,
+    location,
+    activities,
+    admin,
+    itinerary,
+  };
 
-  const updatedPackage = await Package.findByIdAndUpdate(
-    id,
-    {
-      name,
-      description,
-      price,
-      location,
-      activities,
-      image: { public_id: result.public_id, url: result.secure_url },
-      admin,
-    },
-    { new: true }
-  );
+  if (image) {
+    updateData.image = image;
+  }
+
+  const updatedPackage = await Package.findByIdAndUpdate(id, updateData, {
+    new: true,
+  });
 
   if (!updatedPackage) {
     return res.status(404).json({ error: "Package not found" });
   }
+
+  // const updatedPackage = await Package.findByIdAndUpdate(
+  //   id,
+  //   {
+  //     name,
+  //     description,
+  //     price,
+  //     location,
+  //     activities,
+  //     // image: { public_id: result.public_id, url: result.secure_url },
+  //     admin,
+  //   },
+  //   { new: true }
+  // );
+
+  // if (!updatedPackage) {
+  //   return res.status(404).json({ error: "Package not found" });
+  // }
 
   res.status(200).json(updatedPackage);
 });

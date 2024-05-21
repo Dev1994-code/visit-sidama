@@ -12,19 +12,28 @@ const bookingSchema = new mongoose.Schema(
       ref: "Package",
       required: true,
     },
-    // date: {
-    //   type: Date,
-    //   required: true,
-    // },
+    date: {
+      type: Date,
+      required: true,
+    },
+    peopleNumber: {
+      type: Number,
+      required: true,
+    },
     tourGuide: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "TourGuide",
       required: true,
     },
+
     status: {
       type: String,
-      enum: ["pending", "confirmed", "cancelled"],
+      // enum: ["pending", "confirmed", "cancelled"],
       default: "pending",
+    },
+    method: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true }
