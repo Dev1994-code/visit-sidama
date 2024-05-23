@@ -15,6 +15,14 @@ const packageSchema = new Schema({
     type: Number,
     required: true,
   },
+  priceInfo: {
+    type: Number,
+    required: true,
+  },
+  priceDescription: {
+    type: Number,
+    required: true,
+  },
   location: {
     type: String,
     required: true,

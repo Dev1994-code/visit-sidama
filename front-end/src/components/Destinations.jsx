@@ -39,18 +39,24 @@ const Destinations = () => {
             gutter: 16,
             xs: 1,
             sm: 2,
-            md: 3,
-            lg: 3,
-            xl: 4,
-            xxl: 5,
+            md: 2,
+            lg: 2,
+            xl: 3,
+            xxl: 4,
           }}
           dataSource={filteredData}
           renderItem={(item) => (
-            <List.Item>
+            <List.Item className="gap-10">
               <Link to={`/destination/${item._id}`}>
                 <Card
                   hoverable
-                  cover={<img src={item.image.url} alt={item.name} />}
+                  cover={
+                    <img
+                      src={item.image.url}
+                      alt={item.name}
+                      style={{ width: "600px", height: "300px" }}
+                    />
+                  }
                 >
                   <Card.Meta title={item.name} description={item.description} />
                 </Card>

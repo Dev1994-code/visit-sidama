@@ -1,6 +1,7 @@
 import { Button } from "antd";
+import { useCookies } from "react-cookie";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 const Package = () => {
   const { id } = useParams();
@@ -41,6 +42,9 @@ const Package = () => {
   // ]
   const [specificPackage, setSpecificPackage] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cookies, setCookies] = useCookies(["access_token"]);
+  const token = cookies["access_token"];
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -80,12 +84,14 @@ const Package = () => {
             <div className="flex flex-col md:flex-row md:justify-between mx-2 gap-20 md:mx-0">
               <div className="card bg-white border-t-4 border-green-500 rounded-lg overflow-hidden shadow-lg flex-1 md:mr-4">
                 <div className="p-4">
-                  <h1 className="text-3xl font-bold mb-4">
-                    {specificPackage.highlight}
-                  </h1>
-                  <p className="text-gray-700 mb-8 text-xl">
-                    {specificPackage.description2}
-                  </p>
+                  <h1 className="text-3xl font-bold mb-4">Activities</h1>
+                  <ul className="list-disc list-inside">
+                    {specificPackage.activities?.map((activity, index) => (
+                      <li key={index} className="text-gray-700">
+                        {activity}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -107,26 +113,34 @@ const Package = () => {
             </div>
           </div>
 
-          <div className="mx-12  py-8  md:px-0">
-            <div className="flex flex-col md:flex-row md:justify-between mx-2 gap-20 md:mx-0">
-              <div className="card bg-white border-t-4 border-green-500 rounded-lg overflow-hidden shadow-lg flex-1 md:mr-4">
-                <div className="p-4">
-                  <h1 className="text-3xl font-bold mb-4">
-                    {specificPackage.day1}
-                  </h1>
-                  <p className="text-gray-700 mb-8 text-xl">
-                    {specificPackage.description3}
-                  </p>
-                </div>
-              </div>
-              <div className="w-full md:w-1/3 mb-4 md:mb-0">
-                <div className="w-full h-96 object-cover w-full h-full rounded-lg">
-                  {specificPackage.img}
+          {specificPackage.itinerary?.map((item, index) => (
+            <div key={index} className="mb">
+              <div className="mx-12  py-8  md:px-0">
+                <div className="flex flex-col md:flex-row md:justify-between mx-2 gap-20 md:mx-0">
+                  <div className="card bg-white border-t-4 border-green-500 rounded-lg overflow-hidden shadow-lg flex-1 md:mr-4">
+                    <div className="p-4">
+                      <div>
+                        <p className="text-gray-700">
+                          <h3 className="font-semibold">{item.day}: </h3>
+                          {item.info}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full md:w-1/3 mb-4 md:mb-0">
+                    <div className="w-full h-96 object-cover w-full h-full rounded-lg">
+                      <img
+                        src={specificPackage.image.url}
+                        alt="specificPackage.image.url"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
 
+          {/* 
           <div className="mx-12  py-8  md:px-0">
             <div className="flex flex-col md:flex-row md:justify-between mx-2 gap-20 md:mx-0">
               <div className="card bg-white border-t-4 border-green-500 rounded-lg overflow-hidden shadow-lg flex-1 md:mr-4">
@@ -148,11 +162,18 @@ const Package = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </>
       )}
       <div className="flex justify-center items-center my-10">
-        <Button type="primary" className="text-lg items-center">
+        <Button
+          className={
+            token
+              ? "bg-lime-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded items-center"
+              : "opacity-50 cursor-not-allowed"
+          }
+          onClick={() => navigate(`/book/${specificPackage._id}`)}
+        >
           Book Now
         </Button>
       </div>
