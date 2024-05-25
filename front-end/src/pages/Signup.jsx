@@ -50,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <div className="loginBg ">
+    <div className="my-40 flex justify-center items-center">
       <form className="loginForm" onSubmit={handleSubmit}>
         <Typography.Title className="flex justify-center items-center">
           SignUp

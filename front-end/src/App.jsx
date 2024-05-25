@@ -1,4 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
@@ -81,6 +83,7 @@ const App = () => {
       }}
     >
       <RouterProvider router={router} />
+      <ToastContainer />
     </ConfigProvider>
   );
 };
