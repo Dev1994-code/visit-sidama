@@ -4,23 +4,25 @@ import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { useEffect } from "react";
 import axios from "axios";
+import { useEffect } from "react";
 const Reviews = () => {
   const reviewsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(0);
   // the array of reviews
 
   const [reviews, setReviews] = useState([]);
+  const [userIdCookies, setUserIdCookies] = useCookies(["userId_cookies"]);
+  const userId = userIdCookies["userId_cookies"];
+
+  console.log("userId:", userId);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3001/service/review"
-        );
+        const response = await axios.get("http://localhost:3001/review/detail");
         setReviews(response.data);
-        console.log(response.data);
+        console.log("reviews", response.data);
       } catch (error) {
         console.log(error);
       }
@@ -30,6 +32,7 @@ const Reviews = () => {
 
   const [cookies, setCookies] = useCookies(["access_token"]);
   const token = cookies["access_token"];
+  console.log("token:", token);
   const pageCount = Math.ceil(reviews.length / reviewsPerPage);
 
   const handlePageChange = ({ selected }) => {
@@ -49,11 +52,11 @@ const Reviews = () => {
             <div key={review.id} className="bg-white rounded-lg shadow-md p-6">
               <div className="flex items-center gap-5">
                 <div className="w-12 h-12 bg-lime-300 rounded-full flex items-center justify-center text-gray-700 font-semibold text-xl">
-                  {review.name.charAt(0)}
+                  {review.user.name.charAt(0)}
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 capitalize">
-                    {review.name}
+                    {review.user.name}
                   </h3>
                   <div className="flex items-center mt-1">
                     <svg
@@ -68,11 +71,10 @@ const Reviews = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="text-gray-700">{review.rating}</span>
                   </div>
                 </div>
               </div>
-              <p className="text-gray-800 mt-4">{review.comment}</p>
+              <p className="text-gray-800 mt-4">{review.text}</p>
             </div>
           ))}
           <div className="mt-8 flex justify-center">

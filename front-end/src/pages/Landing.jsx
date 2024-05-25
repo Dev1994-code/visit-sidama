@@ -1,9 +1,15 @@
 //import pic from "../assets/pic.jpg";
 import Destinations from "../components/Destinations";
 import Blogs from "../components/Blogs";
+import { Button } from "antd";
 import Reviews from "../components/Reviews";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
+  const [cookies, setCookies] = useCookies(["access_token"]);
+  const token = cookies["access_token"];
+  const navigate = useNavigate();
   return (
     <>
       <div className="">
@@ -27,8 +33,17 @@ const Landing = () => {
         </div>
       </div>
       <Destinations />
-      <Blogs />
       <Reviews />
+      <div>
+        {token && (
+          <Button
+            className="flex justify-end items-center  bg-yellow-500 hover:bg-lime-600  text-white my-6 mx-6 text-lg py-2 "
+            onClick={() => navigate("/rate")}
+          >
+            Rate travelGuide
+          </Button>
+        )}
+      </div>
     </>
   );
 };

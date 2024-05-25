@@ -15,6 +15,7 @@ import StGabriel from "./pages/StGabriel";
 import Hotels from "./pages/Hotels";
 import Booking from "./pages/Booking";
 import AddReview from "./pages/AddReview";
+import TourGuide from "./pages/TourGuide";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/book/:id",
         element: <Booking />,
+      },
+      {
+        path: "/rate",
+        element: <TourGuide />,
       },
     ],
   },
