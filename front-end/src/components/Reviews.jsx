@@ -4,60 +4,29 @@ import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+import axios from "axios";
 const Reviews = () => {
   const reviewsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(0);
-  const reviews = [
-    {
-      id: 1,
-      name: "John Doe",
-      rating: 4.5,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: 2,
-      name: "antneh Smith",
-      rating: 4.8,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: 3,
-      name: "Sara Johnson",
-      rating: 4.2,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: 4,
-      name: "Elsa Johnson",
-      rating: 4.2,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: 5,
-      name: "estif Johnson",
-      rating: 4.2,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: 6,
-      name: "Yonas Johnson",
-      rating: 4.2,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: 7,
-      name: "eyoel Johnson",
-      rating: 4.2,
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-  ];
+  // the array of reviews
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/service/review"
+        );
+        setReviews(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchReviews();
+  }, []);
 
   const [cookies, setCookies] = useCookies(["access_token"]);
   const token = cookies["access_token"];

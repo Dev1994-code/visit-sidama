@@ -15,4 +15,13 @@ const addReview = async (req, res) => {
   }
 };
 
-module.exports = { addReview };
+const getReviews = async (req, res) => {
+  try {
+    const reviews = await Review.find();
+    res.status(200).json(reviews);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to get reviews" });
+  }
+};
+
+module.exports = { addReview, getReviews };
