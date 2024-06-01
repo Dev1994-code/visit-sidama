@@ -14,12 +14,11 @@ exports.detail = asyncMiddleware(async (req, res) => {
 });
 
 exports.register = asyncMiddleware(async (req, res) => {
-  const { username, name, password, email, contactInformation } = req.body;
+  const { username, password, email, contactInformation } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
   let user = new User({
     username,
-    name,
     password: hashedPassword,
     email,
     contactInformation,
@@ -59,12 +58,11 @@ exports.login = asyncMiddleware(async (req, res) => {
 
 exports.update = asyncMiddleware(async (req, res) => {
   const { id } = req.params;
-  const { username, name, email, contactInformation } = req.body;
+  const { username, email, contactInformation } = req.body;
   const user = await User.findByIdAndUpdate(
     id,
     {
       username,
-      name,
       email,
       contactInformation,
     },

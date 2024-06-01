@@ -1,6 +1,6 @@
 //import pic from "../assets/pic.jpg";
 import Destinations from "../components/Destinations";
-import Blogs from "../components/Blogs";
+//import Blogs from "../components/Blogs";
 import { Button } from "antd";
 import Reviews from "../components/Reviews";
 import { useCookies } from "react-cookie";
@@ -15,12 +15,15 @@ const Landing = () => {
       <div className="">
         <div className="lg:grid grid-cols-5 gap-8">
           <div className="col-span-2 mt-40 ml-20">
-            <h2 className="text-4xl font-bold mb-4">Travel with us!</h2>
-            <p className="text-lg text-gray-700">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
-              laborum libero aut voluptatum voluptatibus doloribus mollitia odit
-              a eum magni veritatis reiciendis hic, maxime praesentium
-              consectetur doloremque sunt iusto harum.
+            <h2 className="text-4xl font-bold mb-4 text-purple-700">
+              Travel with us!
+            </h2>{" "}
+            <p className="text-2xl text-gray-700">
+              {" "}
+              Let us take you on an{" "}
+              <span className="text-yellow-600">extraordinary journey</span>,
+              where vibrant culture, awe-inspiring landscapes, and rich history
+              converge to create an unforgettable destination.
             </p>
           </div>
           <div className="col-span-3 mt-14 ml-6">
