@@ -10,6 +10,7 @@ router.get("/:id", userController.detail);
 router.post("/register", userController.register);
 router.post("/login", userController.login);
 router.put("/:id", userController.update);
+router.get("/specific/:id", userController.specific);
 router.put("/rate/:userId/:guideId", userController.rateTourGuide);
 
 module.exports = router;

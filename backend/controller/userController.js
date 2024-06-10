@@ -14,11 +14,12 @@ exports.detail = asyncMiddleware(async (req, res) => {
 });
 
 exports.register = asyncMiddleware(async (req, res) => {
-  const { username, password, email, contactInformation } = req.body;
+  const { username, name, password, email, contactInformation } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
   let user = new User({
     username,
+    name,
     password: hashedPassword,
     email,
     contactInformation,
@@ -30,6 +31,15 @@ exports.register = asyncMiddleware(async (req, res) => {
     expiresIn: process.env.EXPIREDIN,
   });
   res.status(201).json({ user, token });
+});
+
+exports.specific = asyncMiddleware(async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  res.status(200).json(user);
 });
 
 exports.login = asyncMiddleware(async (req, res) => {
